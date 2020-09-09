@@ -825,8 +825,6 @@ func resourceComputeSnapshotDecoder(d *schema.ResourceData, meta interface{}, re
 		res["sourceDiskEncryptionKey"] = transformed
 	}
 
-	if err := d.Set("source_disk_link", ConvertSelfLinkToV1(res["sourceDisk"].(string))); err != nil {
-		return nil, fmt.Errorf("Error setting source_disk_link: %s", err)
-	}
+	d.Set("source_disk_link", ConvertSelfLinkToV1(res["sourceDisk"].(string)))
 	return res, nil
 }

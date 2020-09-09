@@ -200,6 +200,22 @@ func schemaNodeConfig() *schema.Schema {
 						},
 					},
 				},
+
+				"workload_metadata_config": {
+					Computed: true,
+					Type:     schema.TypeList,
+					Optional: true,
+					MaxItems: 1,
+					Elem: &schema.Resource{
+						Schema: map[string]*schema.Schema{
+							"node_metadata": {
+								Type:         schema.TypeString,
+								Required:     true,
+								ValidateFunc: validation.StringInSlice([]string{"UNSPECIFIED", "SECURE", "EXPOSE", "GKE_METADATA_SERVER"}, false),
+							},
+						},
+					},
+				},
 			},
 		},
 	}
